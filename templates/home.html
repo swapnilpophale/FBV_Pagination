@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>home page</title>
+{% endblock %}
+
+{% block first %}
+    <h1>Home</h1>
+    {% for article in page_obj %}
+        <h1> {{ article.title }}</h1>
+        <h3>{{ article.writer }}</h3>
+        <p>{{ article.publish_date }}</p><br><br>
+    {% endfor %}
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}" >Previous</a>
+            {% endif %}
+            <span>{{page_obj.number}}</span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}" >Next</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
